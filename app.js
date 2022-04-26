@@ -8,12 +8,22 @@ const xss = require('xss-clean')
 const hpp = require('hpp')
 const cookieParser = require('cookie-parser')
 const compression = require('compression')
+const cors = require('cors')
 
 const testRouter = require('./routes/testRoutes')
 
 const app = express()
 
 // Middlewares
+
+// Implement CORS
+
+app.use(cors({
+    "origin": "*",
+    "methods": "GET,POST",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}))
 
 // Serving Static Files
 app.use(express.static(path.join(__dirname, 'public')))
